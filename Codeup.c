@@ -1,17 +1,33 @@
-#include <stdio.h>
-int main(){
-
-int n, i, t;
-int a[24]={};
-scanf("%d", &n); //개수 입력받기
-for(i=1; i<=n; i++) //개수만큼 입력받기
-{
-  scanf("%d", &t); //읽어서
-  a[t]=a[t]+1; //들어있던 값에 1만큼 더해 다시 저장. a[t]+=1 과 같다.
+#include<stdio.h>
+ 
+int main() {
+ 
+ 
+    int arr[10000] = { 0, };
+    int num;
+ 
+    scanf("%d", &num);
+ 
+    for (int i = 0; i < num; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    int temp;
+ 
+    for (int i = 0; i < num; i++) {
+        for (int j = 0; j < num - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+ 
+    printf("%d", arr[0]);
+ 
+ 
+    return 0;
 }
-for(i=1; i<=23; i++)
-{  
-  printf("%d ", a[i]); //1~23 번 배열에 저장되어있는 값 출력하기  
-}  
+ 
 
-} 
