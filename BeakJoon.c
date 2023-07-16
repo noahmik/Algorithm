@@ -1,23 +1,17 @@
 #include <stdio.h>
-#include <string.h>
 
-int main(){
-    char a[1000000]; //문자열
-    int space = 0; //공백
-
-    scanf("%[^\n]s",a); //enter를 만날때까지 읽음
-
-    if(a[0]!=' '){ 
-    space++;
-    }
-
-    for(int i=1;i<strlen(a);i++){
-        if(a[i-1]==' ' && a[i]!=' '){ 
-            space++;
-        }    
-    } 
-
-    printf("%d",space);
-
-    return 0;
+int main() {
+	int n;
+	scanf("%d", &n);
+	for (int i = 1; i <= n; i++) {
+		for (int j = n-i; j > 0; j--)printf(" ");
+		for (int k=2*i-1; k > 0; k--)printf("*");
+		printf("\n");
+	}
+	for (int i = n-1; i > 0; i--) {
+		for (int j = n-i; j > 0; j--)printf(" ");
+		for (int k = 2*i-1; k > 0; k--)printf("*");
+		printf("\n");
+	}
+	return 0;
 }
