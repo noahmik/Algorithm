@@ -1,11 +1,11 @@
-a,b,c = map(int,input().split())
+a, m, d, n = input().split()
 
-sum = a
-i = 1
+a = int(a)
+m = int(m)
+d = int(d)
+n = int(n)
 
-while i<c:
-    sum *= b
-    i += 1
+for i in range(1, n) :
+  a = a*m+d
 
-print(sum)
-
+print(a)
