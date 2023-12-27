@@ -1,5 +1,14 @@
-a,b = map(int,input().split())
+a,b,c = map(int,input().split())
+sum = 0
+i = 0
+j = 0
+y = 0
 
-for i in range(1,a+1):
-    for j in range(1,b+1):
-        print(i, j)
+for i in range(a):
+    for j in range(b):
+        for y in range(c):
+            print(i,j,y)
+            sum += 1
+
+print(sum)
+
