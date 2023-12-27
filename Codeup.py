@@ -1,9 +1,5 @@
-a = int(input())
-sum = 0
+a,b = map(int,input().split())
 
 for i in range(1,a+1):
-    sum += i
-    if sum >= a:
-        break
-    
-print(i)
+    for j in range(1,b+1):
+        print(i, j)
