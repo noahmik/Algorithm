@@ -1,24 +1,71 @@
-class Exercise6_23 {
-    static int max(int[] arr) {
-        if (arr == null || arr.length == 0)
-            return -999999;
-
-        int max = arr[0];
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i] > max) {
-                max = arr[i];
-            }
-        }
-        return max;
+abstract class Shape {
+    Point p;
+    
+    Shape(){
+        this(new Point(0,0));
     }
 
-    public static void main(String args[]) {
-        int[] data = {3,2,9,4,7};
-        System.out.println(java.util.Arrays.toString(data));
-        System.out.println("최대값: " + max(data)); //9
-        System.out.println("최대값: " + max(null)); //-999999
-        System.out.println("최대값: " + max(new int[]{})); // -999999
+    Shape(Point p) {
+        this.p = p;
+    }
 
+    abstract double clacArea();
 
+    Point getPosition() {
+        return p;
+    }
+
+    void setPosiion(Point p) {
+        this.p = p;
+    }
+}
+
+class Point {
+    int x;
+    int y;
+    
+    Point(){
+        this(0,0);
+    }
+    
+    Point(int x,int y){
+        this.x = x;
+        this.y = y;
+    }
+    
+    public String toString(){
+        return "["+x+","+y+"]";
+    }
+}
+
+class Circle extends Shape{
+    double r; // 반지름
+
+    Circle(double r){
+        super();
+        this.r = r;
+    }
+    @Override
+    double clacArea() {
+        return Math.PI * r * r;
+    }
+}
+
+class Rectangle extends Shape{
+    double width;
+    double height;
+    Rectangle(double width,double height){
+        this.width = width;
+        this.height = height;
+    }
+    @Override
+    double clacArea() {
+        return width*height;
+    }
+    boolean isSquare(){
+        if (width == height){
+            return true;
+        }
+        return false;
     }
 }
