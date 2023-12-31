@@ -1,11 +1,9 @@
-a, m, d, n = input().split()
+a = int(input())
 
-a = int(a)
-m = int(m)
-d = int(d)
-n = int(n)
+def cir(num):
+    if num == 1:
+        return 1
+        
+    return num*cir(num-1)
 
-for i in range(1, n) :
-  a = a*m+d
-
-print(a)
+print(cir(a))
