@@ -1,19 +1,28 @@
-#include <stdio.h>
-
-    int main(){       
-    int a[51]={},b,c,d;
-    scanf("%d",&b);
-    for(int i=1;i<=b;i++) {
-        scanf("%d",&d);
-        a[d]=1;
-    } 
-    for(int j=1;j<=b;j++) {
-        if(a[j]==0){
-            c=j;
+#include<stdio.h>
+ 
+int main(){
+    
+    int i_num;
+    scanf("%d",&i_num);
+    
+    int bin_arr[1000] = {};
+    int i_Cnt = 0;
+    
+    for(int i=0; i_num > 0; i++ ){
+        
+        bin_arr[i] = i_num % 2;
+        i_num /= 2;
+        i_Cnt++;
+    }
+    
+    i_Cnt -= 1;
+    if(i_Cnt < 0){printf("%d",bin_arr[0]);}
+    else{
+        for(int j = i_Cnt; j>=0; j--){
+            
+            printf("%d",bin_arr[j]);
         }
     }
-
-    printf("%d",c);
-
     return 0;
 }
+ 
