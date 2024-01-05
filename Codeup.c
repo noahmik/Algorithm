@@ -1,28 +1,21 @@
 #include <stdio.h>
-int main()
-{
-  char a[50][50];
-  int b[50],c[50],d;
-
-  scanf("%d",&d);
-  for(int i=1;i<=d;i++){
-    scanf("%s %d",a[i],&b[i]); //2차원 배열에서는 & 쓰지않음
-    c[i] = 1; // 시작은 1
-  
-  }
-  for(int j=1;j<=d;j++){
-    for(int x=1;x<=d;x++){
-      if(b[j]<b[x]){
-        c[j]++;
-      } 
-    }
-  }
-  for(int y=1;y<=d;y++){
-    if(c[y]==3){
-      printf("%s",a[y]);
-    }
-  }
-
-  
+int main() {
+	
+	int a,b[10000000],temp,c,d,e[10000000];
+	
+	scanf("%d",&a);
+	for(int i=1;i<=a;i++){
+		scanf("%d",&temp);
+		b[temp] = 1;
+	}
+	scanf("%d",&c);
+	for(int k=1;k<=c;k++){
+		scanf("%d",&d);
+		if(b[d]==1)
+			printf("1 ");
+		else
+			printf("0 ");	
+	}
+	
+	
 }
-
