@@ -1,21 +1,15 @@
+#include <stdio.h>
+int main() {
 
-#include<stdio.h>
- 
- 
-int main(){
-    
-    int num;
-    int buf[1000] = {};
-    scanf("%d",&num);
-    
-    for(int i =0; i<num; i++){
-        scanf("%d", &buf[i]);
+    int a[11],b;
+    for(int i=1;i<=10;i++) {
+    scanf("%d",&a[i]);
     }
-  
-    for(int j = num-1; j >= 0; j--){
-        printf("%d ",buf[j]);
-    }
- 
-    
+
+    scanf("%d",&b);
+    printf("%d",a[b]);
+
+
     return 0;
 }
+
