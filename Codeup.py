@@ -1,13 +1,9 @@
-def trans(n):
-    if (n<1):
-        return '0'
-    elif (n==1):
-        return '1'
-    if (n%2==0):
-        return trans(int(n/2)) + '0'
-    elif (n%2==1):
-        return trans(int(n/2)) + '1'
+def hanoi_tower(n, a, b, c):
+    if n > 0:
+        hanoi_tower(n-1, a, c, b)
+        print(f"Disk {n} : {a} to {b}")
+        hanoi_tower(n-1, c, b, a)
 
 n = int(input())
-answer = trans(n)
-print(answer)
+hanoi_tower(n, 'A', 'C', 'B')
+
