@@ -1,20 +1,21 @@
 #include <stdio.h>
-#include <string.h>
-
+ 
 int main() {
-
-	int time[26] = { 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 10, 10, 10, 10 };
-
-	char s[16];
-	int ans = 0;
-
-	scanf("%s", s);
-
-	for (int i = 0; i < strlen(s); i++) {
-		ans += time[s[i] - 'A'];
-	}
-	
-	printf("%d", ans);
-
-	return 0;
+ 
+    int n, k;
+    int cnt = 0;
+    int i;
+    scanf("%d %d", &n, &k);
+    
+ 
+    for (i = 1; i <= n; i++) {
+        if (n % i == 0)
+            cnt++;
+        if (cnt == k)
+            break;
+    }
+    if (i <= n) printf("%d", i);
+    else printf("0");
+ 
+    
 }
