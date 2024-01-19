@@ -1,21 +1,30 @@
 #include <stdio.h>
- 
+#include <string.h>
+
 int main() {
- 
-    int n, k;
-    int cnt = 0;
-    int i;
-    scanf("%d %d", &n, &k);
+    char s[100];
+    int alphabet[26], len, index;
     
- 
-    for (i = 1; i <= n; i++) {
-        if (n % i == 0)
-            cnt++;
-        if (cnt == k)
-            break;
+    for (int i = 0; i < 26; i++) {
+        alphabet[i] = -1;
     }
-    if (i <= n) printf("%d", i);
-    else printf("0");
- 
     
+    scanf("%s", s);
+    
+    len = strlen(s);
+    for (int i = 0; i < len; i++) {
+        index = s[i] - 'a';
+        if (alphabet[index] == -1) {
+            alphabet[index] = i;
+        }
+        else {
+            continue;
+        }
+    }
+    
+    for (int i = 0; i < 26; i++) {
+        printf("%d ", alphabet[i]);
+    }
+    
+    return 0;
 }
