@@ -1,24 +1,20 @@
 #include <stdio.h>
+#include <string.h>
 
-int f(int x){
+int main() {
+
+	int time[26] = { 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 10, 10, 10, 10 };
+
+	char s[16];
 	int ans = 0;
-	
-	for(int i=x;i;i/=10)
-		ans = ans*10 + i%10;
-	
-	return ans;
-}
 
-int main(){
-	int a,b;
+	scanf("%s", s);
+
+	for (int i = 0; i < strlen(s); i++) {
+		ans += time[s[i] - 'A'];
+	}
 	
-	scanf("%d %d",&a,&b);
-	
-	a = f(a);
-	b = f(b);
-	
-	if(a>b) printf("%d\n",a);
-	else printf("%d\n",b);
-	
+	printf("%d", ans);
+
 	return 0;
 }
