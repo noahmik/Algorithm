@@ -1,17 +1,24 @@
 #include <stdio.h>
 
-int main() {
-	int n;
-	scanf("%d", &n);
-	for (int i = 1; i <= n; i++) {
-		for (int j = n-i; j > 0; j--)printf(" ");
-		for (int k=2*i-1; k > 0; k--)printf("*");
-		printf("\n");
-	}
-	for (int i = n-1; i > 0; i--) {
-		for (int j = n-i; j > 0; j--)printf(" ");
-		for (int k = 2*i-1; k > 0; k--)printf("*");
-		printf("\n");
-	}
+int f(int x){
+	int ans = 0;
+	
+	for(int i=x;i;i/=10)
+		ans = ans*10 + i%10;
+	
+	return ans;
+}
+
+int main(){
+	int a,b;
+	
+	scanf("%d %d",&a,&b);
+	
+	a = f(a);
+	b = f(b);
+	
+	if(a>b) printf("%d\n",a);
+	else printf("%d\n",b);
+	
 	return 0;
 }
