@@ -5,4 +5,4 @@ rank = sorted(students, reverse=True)
 
 for i in range(n):
     a = rank.index(students[i])
-    print(students[i], a+1)
+    print(students[i], a+1) 

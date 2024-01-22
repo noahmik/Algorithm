@@ -1,4 +1,9 @@
-string = input()
+def char_and_string(S, i):
+    return S[i-1]
 
-for i in range(len(string)-1, -1, -1):
-    print(string[i], end='')
+
+if __name__ == "__main__":
+    S = input()
+    i = int(input())
+    
+    print(char_and_string(S=S, i=i))
