@@ -1,9 +1,6 @@
-def char_and_string(S, i):
-    return S[i-1]
+word = list(str(input()))
 
-
-if __name__ == "__main__":
-    S = input()
-    i = int(input())
-    
-    print(char_and_string(S=S, i=i))
+if list(reversed(word)) == word:
+    print(1)
+else:
+    print(0)
