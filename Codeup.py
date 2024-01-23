@@ -1,9 +1,29 @@
-def 최대공약수(a,b,c):
-  max = 0
-  for i in range(1,a + 1):
-     if a % i == 0 and b % i == 0 and c % i ==0:
-        max = i
-  return max
+change = int(input())
+count = 0
+while change:
+  if change >= 50000:
+    change -= 50000
+    count +=1
+  elif change >= 10000:
+    change -= 10000
+    count +=1
+  elif change >= 5000:
+    change -= 5000
+    count +=1
+  elif change >= 1000:
+    change -= 1000
+    count +=1
+  elif change >= 500:
+    change -= 500
+    count +=1
+  elif change >= 100:
+    change -= 100
+    count +=1
+  elif change >= 50:
+    change -= 50
+    count +=1
+  elif change >= 10:
+    change -= 10
+    count +=1
 
-a,b,c = map(int,input().split())
-print(최대공약수(a,b,c))
+print(count)
