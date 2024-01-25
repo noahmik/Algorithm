@@ -1,6 +1,9 @@
-A =int(input())
+def 유클리드(a, b):
+    if b == 0:
+        return a
+    else:
+        return 유클리드(b, a % b)
 
-for i in range(1,7):
-    for j in range(1,7):
-        if i + j == A:
-            print(i,j)
+a, b = map(int, input().split())
+print(유클리드(a, b))
+
