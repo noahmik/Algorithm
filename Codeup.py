@@ -1,18 +1,28 @@
-a, b, c = map(int, input().split())
+inputNumber = int(input())
+temp = inputNumber
+digit = 0
+rem = 0
+sum = 0
 
-if a <= b and a <= c:
-    if c <= b:
-        print(a, c, b)
+while temp > 0:
+    digit += 1
+    temp //= 10
+
+digit2 = digit
+
+for i in range(digit):
+    if inputNumber % 10 == 0:
+        digit2 -= 1
+        inputNumber //= 10
     else:
-        print(a, b, c)
-elif b <= a and b <= c:
-    if a <= c:
-        print(b, a, c)
-    else:
-        print(b, c, a)
-else:
-    if a <= b:
-        print(c, a ,b)
-    else:
-        print(c ,b ,a)
+        result = inputNumber
+        for i in range(digit2):
+            rem = result % 10
+            result //= 10
+            sum += rem
+            print(rem, end="")
+        print()
+        print(sum)
+        break
+
 
