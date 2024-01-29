@@ -1,18 +1,18 @@
-def is_palindrome(num):
-    # 입력받은 숫자를 뒤집은 후 더하기
-    reverse_num = int(str(num)[::-1])
-    sum_num = num + reverse_num
-    
-    # 회문인지 아닌지 판별
-    if str(sum_num) == str(sum_num)[::-1]:
-        return True
+a, b, c = map(int, input().split())
+
+if a <= b and a <= c:
+    if c <= b:
+        print(a, c, b)
     else:
-        return False
-
-n = int(input())
-
-if is_palindrome(n):
-    print("YES")
+        print(a, b, c)
+elif b <= a and b <= c:
+    if a <= c:
+        print(b, a, c)
+    else:
+        print(b, c, a)
 else:
-    print("NO")
+    if a <= b:
+        print(c, a ,b)
+    else:
+        print(c ,b ,a)
 
