@@ -1,8 +1,4 @@
-n = int(input())
-students = list(map(int, input().split()))
+string = input()
 
-rank = sorted(students, reverse=True)
-
-for i in range(n):
-    a = rank.index(students[i])
-    print(students[i], a+1) 
+for i in range(len(string)-1, -1, -1):
+    print(string[i], end='')
