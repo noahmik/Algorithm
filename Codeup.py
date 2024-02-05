@@ -1,5 +1,11 @@
-pasta = [int(input()) for _ in range(3)]
-juice = [int(input()) for _ in range(2)]
-mini = min(pasta) + min(juice)
+n, c = map(int, input().split())
+students = list(map(int, input().split()))
 
-print(f'{mini*1.1:.1f}')
+students.sort()
+
+for i in range(0, int(n/c)+1):
+    for j in range(i*c, i*c+c):
+        if j >= len(students):
+            break
+        print(students[j], end=' ')
+    print()
