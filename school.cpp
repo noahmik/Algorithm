@@ -1,20 +1,30 @@
-//2. 자연수의 합
-//자연수 A,B가 주어지면 A부터 B까지의 합을 수식과 함께 출력하세요
-//입력; 첫줄에 자연수 A,B 공백으로 입력 (1<=A<=B<=100)
-//출력; 첫줄에 수식과 함께 합을 출력합니다
-//입력예제1 ; 3 7 출력예제; 3+4+5+6+7 = 25
+//3. 진약수의 합
+//자연수 N이 주어지면 자연수 N의 진약수의 합을 수식과 함께 출력하는 프로그램
+
+//입력; 첫 줄에 자연수 N이 주어집니다 3<N<100
+//출력; 첫 줄에 더하는 수식과 함께 합을 출력합니다.
+
 
 #include <iostream>
+#include <string>
 
-int main(){
-  int A,B,C;
-  std::cin >> A >> B;
-  C = A;
-  std::cout << A;
-  for(int i=A+1;i<=B;i++){
-    std::cout << "+";
-    std::cout << i;
-    C += i;
+int main() {
+  int N;
+  std::cout << "자연수 N을 입력하세요: ";
+  std::cin >> N;
+
+  int sum = 0;
+  std::string equation;
+  for (int i = 2; i < N; i++) {
+    if (N % i == 0) {
+      sum += i;
+      equation += std::to_string(i) + "+";
+    }
   }
-  std::cout << " = " << C;
+
+  equation = equation.substr(0, equation.length() - 1); // 마지막 "+" 제거
+  std::cout << equation << " = " << sum << std::endl;
+
+  return 0;
 }
+
