@@ -1,30 +1,31 @@
-//3. 진약수의 합
-//자연수 N이 주어지면 자연수 N의 진약수의 합을 수식과 함께 출력하는 프로그램
+//04. 나이 차이
+//N명의 나이가 입력됩니다 N명의 사람중 가장 나이차이가 많이 나는 경우를 고르시오
 
-//입력; 첫 줄에 자연수 N이 주어집니다 3<N<100
-//출력; 첫 줄에 더하는 수식과 함께 합을 출력합니다.
+//입력
+//첫줄에 자연수 N이 입력되고, 그다음에 N개의 나이가 입력된다.
 
+//출력
+// 첫줄에 최대나이차를 출력합니다
+#include "iostream"
+#include <climits>
 
-#include <iostream>
-#include <string>
+using namespace std;
 
-int main() {
-  int N;
-  std::cout << "자연수 N을 입력하세요: ";
-  std::cin >> N;
-
-  int sum = 0;
-  std::string equation;
-  for (int i = 2; i < N; i++) {
-    if (N % i == 0) {
-      sum += i;
-      equation += std::to_string(i) + "+";
-    }
+int main(){
+  freopen("ex04_input.txt", "rt", stdin);
+  int n,a;
+  int max =0;
+  int min = INT_MAX;
+  cin >> n;
+  for (int i = 1; i <= n; i++) {
+    cin >> a;
+    if (a > max)
+      max = a;
+    if (a < min)
+      min= a;
   }
 
-  equation = equation.substr(0, equation.length() - 1); // 마지막 "+" 제거
-  std::cout << equation << " = " << sum << std::endl;
+  int max_diff = max - min;
+  cout << max_diff << endl;
 
-  return 0;
 }
-
