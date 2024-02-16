@@ -1,31 +1,36 @@
-//04. 나이 차이
-//N명의 나이가 입력됩니다 N명의 사람중 가장 나이차이가 많이 나는 경우를 고르시오
+//05. 나이계산
+//주민등록 번호가 주어지면 주민등록증 주인의 나이와 성별을 판단하여 출력하는 프로그램
 
 //입력
-//첫줄에 자연수 N이 입력되고, 그다음에 N개의 나이가 입력된다.
+//780316-2376152
 
 //출력
-// 첫줄에 최대나이차를 출력합니다
-#include "iostream"
-#include <climits>
-
+//나이와 성별을 공백으로 구분해 출력하세요
+//42 W
+#include <iostream>
+#include <string>
 using namespace std;
 
-int main(){
-  freopen("ex04_input.txt", "rt", stdin);
-  int n,a;
-  int max =0;
-  int min = INT_MAX;
-  cin >> n;
-  for (int i = 1; i <= n; i++) {
-    cin >> a;
-    if (a > max)
-      max = a;
-    if (a < min)
-      min= a;
+int main() {
+  string JDBH;
+  cout << "주민등록번호를 입력하세요: ";
+  cin >> JDBH;
+  int birth_year = stoi(JDBH.substr(0, 2));
+  char gender = JDBH[7];
+
+  int age;
+  if (gender == '1' || gender == '2') {
+    age = 2024 - (1900 + birth_year) + 1;
+  } else {
+    age = 2024 - (2000 + birth_year) + 1;
   }
 
-  int max_diff = max - min;
-  cout << max_diff << endl;
+  if (gender == '1' || gender == '3' || gender == '9') {
+    cout << age << " M" << endl; // 남성
+  } else {
+    cout << age << " W" << endl; // 여성
+  }
 
+  return 0;
 }
+
