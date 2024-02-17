@@ -1,36 +1,26 @@
-//05. 나이계산
-//주민등록 번호가 주어지면 주민등록증 주인의 나이와 성별을 판단하여 출력하는 프로그램
-
-//입력
-//780316-2376152
-
-//출력
-//나이와 성별을 공백으로 구분해 출력하세요
-//42 W
+//입력 첫 줄에 숫자가 적힌 문자열이 주어집니다. 문자열의 길이는 50을 넘지 않습니다.
+//첫 줄에 자연수를 출력하고, 두 번째 줄에 약수의 개수를 출력합니다.
+//입력예제 :
+// g0en2Ts8eSoft
+//출력예제 :
+// 28
+// 6
 #include <iostream>
-#include <string>
+
 using namespace std;
 
 int main() {
-  string JDBH;
-  cout << "주민등록번호를 입력하세요: ";
-  cin >> JDBH;
-  int birth_year = stoi(JDBH.substr(0, 2));
-  char gender = JDBH[7];
+  char str[100];
+  int n=0, m=0, i=0;
+  cin>>str;
 
-  int age;
-  if (gender == '1' || gender == '2') {
-    age = 2024 - (1900 + birth_year) + 1;
-  } else {
-    age = 2024 - (2000 + birth_year) + 1;
+  for(i=0; i<strlen(str); i++){
+    if(str[i]>=48&&str[i]<=57){
+      n = n*10 + str[i]-48;
+    }
   }
-
-  if (gender == '1' || gender == '3' || gender == '9') {
-    cout << age << " M" << endl; // 남성
-  } else {
-    cout << age << " W" << endl; // 여성
+  for(i=1; i<=n; i++) {
+    if (n % i == 0) m++;
   }
-
-  return 0;
+  cout<<n<<endl<<m;
 }
-
