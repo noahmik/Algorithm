@@ -1,26 +1,31 @@
-//입력 첫 줄에 숫자가 적힌 문자열이 주어집니다. 문자열의 길이는 50을 넘지 않습니다.
-//첫 줄에 자연수를 출력하고, 두 번째 줄에 약수의 개수를 출력합니다.
-//입력예제 :
-// g0en2Ts8eSoft
-//출력예제 :
-// 28
-// 6
+//첫 줄에 바이러스가 걸린 영어단어가 주어진다. 바이러스에 걸린 영단어의 길이는 100을
+//넘지 않는다. 문자 사이의 공백은 연속적으로 존재할 수 있다. 입력은 알파벳과 공백만 주어진다.
+
+//첫 줄에 소문자로 된 정상적인 영단어를 출력한다.
+//입력예제:
+//bE    au T I fu  L
+//출력예제:
+//beautiful
+
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 int main() {
-  char str[100];
-  int n=0, m=0, i=0;
-  cin>>str;
+  string input;
+  getline(cin, input); // 공백을 포함한 문자열 입력 받음
 
-  for(i=0; i<strlen(str); i++){
-    if(str[i]>=48&&str[i]<=57){
-      n = n*10 + str[i]-48;
+  string result;
+
+  // 입력된 문자열에서 공백을 제거하고 소문자로 변환하여 result에 추가
+  for (char c : input) {
+    if (c != ' ') { // 공백이 아닌 경우에만 추가
+      result += tolower(c); // 소문자로 변환하여 추가
     }
   }
-  for(i=1; i<=n; i++) {
-    if (n % i == 0) m++;
-  }
-  cout<<n<<endl<<m;
+
+  cout << result << endl; // 결과 출력
+
+  return 0;
 }
