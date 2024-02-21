@@ -3,28 +3,36 @@
 
 using namespace std;
 
-vector<int> count(int n) {
-  vector<int> counts(n + 1, 0); // 각 숫자의 약수 개수를 저장할 벡터 초기화
-
-  for (int i = 1; i <= n; ++i) {
-    for (int j = i; j <= n; j += i) {
-      counts[j]++; // j의 약수의 개수 증가
-    }
+int digit_sum(int x) {
+  int sum = 0;
+  while (x > 0) {
+    sum += x % 10;
+    x /= 10;
   }
-
-  return counts;
+  return sum;
 }
 
 int main() {
   int N;
   cin >> N;
 
-  vector<int> counts = count(N);
-
-  for (int i = 1; i <= N; ++i) {
-    cout << counts[i] << " ";
+  vector<int> numbers(N);
+  for (int i = 0; i < N; ++i) {
+    cin >> numbers[i];
   }
-  cout << endl;
+
+  int max_sum = 0;
+  int max_number = 0;
+
+  for (int i = 0; i < N; ++i) {
+    int sum = digit_sum(numbers[i]);
+    if (sum > max_sum || (sum == max_sum && numbers[i] > max_number)) {
+      max_sum = sum;
+      max_number = numbers[i];
+    }
+  }
+
+  cout << max_number << endl;
 
   return 0;
 }
