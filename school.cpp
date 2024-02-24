@@ -3,7 +3,8 @@
 #include <utility>
 #include <vector>
 using namespace std;
-
+const int numOfPlayer = 8;
+const int score[] = {10, 8 ,6,5,4,3,2,1};
 
 //선수 클래스
 class Player{
