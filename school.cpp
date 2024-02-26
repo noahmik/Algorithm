@@ -185,3 +185,29 @@ public:
       Game::redScore = redScore;
     }
 };
+
+int main() {
+//테스트 케이스 수(t) 입력
+  int t; cin>>t;
+//t개수 만큼 게임, 팀 종류 및 기록 입력받고 저장
+  vector<Game> games(t);
+  for(int i=0; i<t; i++) {
+//게임 종류 입력 및 저장
+    string type; cin>>type;
+    games[i].setType(type);
+//팀종류 및 기록 입력 저장
+    for(int j=0; j<numOfPlayer; j++) {
+      string team, rec;
+      cin>>team>>rec;
+
+      games[i].getPlayers()[j].setTeamType(team);
+      games[i].getPlayers()[j].setRecord(Game::getTimeRecord(rec, ':'));
+    }
+  }
+//게임 결과 출력
+  for(auto &game: games) {
+    game.update();
+    cout<<game.getWinner()<<endl;
+  }
+  return 0;
+}
