@@ -57,3 +57,71 @@ int main() {
     }
   }
 }
+
+void showMenu() {
+  cout << "-----menu-------" << endl;
+  cout << "1. 계좌개설" << endl;
+  cout << "2. 입 금" << endl;
+  cout << "3. 출 금" << endl;
+  cout << "4. 계좌정보 전체 출력" << endl;
+  cout << "5. 프로그램 종료" << endl;
+}
+
+void makeAccount() {
+  if (accNum < MAX_ACC_NUM) {
+    cout << "[계좌개설]" << endl;
+    cout << "계좌ID : "; cin >> accArr[accNum].accountID;
+    cout << "이  름 : "; cin >> accArr[accNum].cusName;
+    cout << "입금액 : "; cin >> accArr[accNum].bankBalance;
+    accNum += 1;
+  } else {
+    cout << "더 이상 계좌를 생성할 수 없습니다." << endl;
+  }
+}
+
+void withdrawMoney() {
+  int accountID, amount;
+  cout << "[출 금]" << endl;
+  cout << "계좌ID: "; cin >> accountID;
+  cout << "출금액: "; cin >> amount;
+
+  // 해당 계좌ID를 찾아서 출금 처리
+  for (int i = 0; i < accNum; i++) {
+    if (accArr[i].accountID == accountID) {
+      if (accArr[i].bankBalance >= amount) {
+        accArr[i].bankBalance -= amount;
+        cout << "출금 완료" << endl;
+      } else {
+        cout << "잔액 부족" << endl;
+      }
+      return;
+    }
+  }
+  cout << "유효하지 않은 계좌ID 입니다." << endl;
+}
+
+void depositMoney() {
+  int accountID, amount;
+  cout << "[입 금]" << endl;
+  cout << "계좌ID: "; cin >> accountID;
+  cout << "입금액: "; cin >> amount;
+
+  // 해당 계좌ID를 찾아서 입금 처리
+  for (int i = 0; i < accNum; i++) {
+    if (accArr[i].accountID == accountID) {
+      accArr[i].bankBalance += amount;
+      cout << "입금 완료" << endl;
+      return;
+    }
+  }
+  cout << "유효하지 않은 계좌ID 입니다." << endl;
+}
+
+void showAllAccInfo() {
+  cout << "-----계좌정보 전체 출력-----" << endl;
+  for (int i = 0; i < accNum; i++) {
+    cout << "계좌ID: " << accArr[i].accountID << endl;
+    cout << "이름: " << accArr[i].cusName << endl;
+    cout << "잔액: " << accArr[i].bankBalance << endl << endl;
+  }
+}
