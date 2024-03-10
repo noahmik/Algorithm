@@ -1,20 +1,29 @@
-class DAISO {
-    public static void main(String[] args) {
-        int Mymoney = 10000;
-        System.out.println("받을 거스름돈은 : " + calculator(Mymoney,1000));
-        System.out.println("받을 거스름돈은 : " + calculator(Mymoney,1000,2000));
-        System.out.println("받을 거스름돈은 : " + calculator(Mymoney,1000,2000,3000));
+class SHOP {
+    String type; //가게 종류
+    int time; //영업시간
+    String location; //가게 위치
+}
+class DAISO extends SHOP {
+    int Mymoney; //들고온 돈
+    boolean Basket; // 장바구니 유무
+
+    DAISO(){
+        this(10000,false);
     }
-    static int calculator(int Mymoney, int price1) {
-        int result = Mymoney - (price1);
-        return result;
+    DAISO(int Mymoney){
+        this(Mymoney,false);
     }
-    static int calculator(int Mymoney, int price1,int price2) {
-        int result = Mymoney - (price1+price2);
-        return result;
+    DAISO(int Mymoney,boolean Basket){
+        this.Mymoney = Mymoney;
+        this.Basket = Basket;
+
+        super.type = "가게";
+        super.time = 24;
+        super.location = "부산지사동점";
     }
-    static int calculator(int Mymoney, int price1, int price2, int price3) {
-        int result = Mymoney - (price1 + price2 + price3);
-        return result;
-    }
+}
+class ShopTest {
+    DAISO d1 = new DAISO();
+    DAISO d2 = new DAISO(20000);
+    DAISO d3 = new DAISO(30000,true);
 }
