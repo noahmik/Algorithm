@@ -3,6 +3,7 @@ class SHOP {
     int time; //영업시간
     String location; //가게 위치
 }
+
 class DAISO extends SHOP {
     int Mymoney; //들고온 돈
     boolean Basket; // 장바구니 유무
