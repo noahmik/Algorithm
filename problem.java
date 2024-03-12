@@ -1,30 +1,37 @@
-class SHOP {
-    String type; //가게 종류
-    int time; //영업시간
-    String location; //가게 위치
+import java.util.*;         // Vector클래스를 사용하기 위해서 추가해 주었다.
+
+abstract class Bank{
+    double IR = 0.35;
+    abstract void Loan(int money);
+    abstract void Saving(int money);
 }
 
-class DAISO extends SHOP {
-    int Mymoney; //들고온 돈
-    boolean Basket; // 장바구니 유무
-
-    DAISO(){
-        this(10000,false);
+class anyBank extends Bank{
+    double IR;
+    anyBank(double a) {
+        this.IR = a;
     }
-    DAISO(int Mymoney){
-        this(Mymoney,false);
+    void Loan(int money){
+        System.out.println("당신이 갚아야할 이자는 " + IR*money + "원 입니다.");
     }
-    DAISO(int Mymoney,boolean Basket){
-        this.Mymoney = Mymoney;
-        this.Basket = Basket;
-
-        super.type = "가게";
-        super.time = 24;
-        super.location = "부산지사동점";
+    void Saving(int money) {
+        System.out.println("당신이 받을 수 있는 이자는 " + IR*money + "원 입니다.");
     }
 }
-class ShopTest {
-    DAISO d1 = new DAISO();
-    DAISO d2 = new DAISO(20000);
-    DAISO d3 = new DAISO(30000,true);
+
+class Person{
+    int money;
+    Person(int money){
+        this.money = money;
+    }
+}
+
+class testClass{
+    public static void main(String[] args) {
+        anyBank BusanBank = new anyBank(0.37);
+        anyBank DaeguBank = new anyBank(0.4);
+        Person taeyoung = new Person(100000);
+        BusanBank.Saving(taeyoung.money);
+        DaeguBank.Loan(taeyoung.money);
+    }
 }
