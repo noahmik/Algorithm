@@ -1,84 +1,54 @@
 #include <iostream>
-#include <cstdlib>
 #include <vector>
+
 using namespace std;
 
+class Cat {
+private:
+    int mAge;
+public:
+    explicit Cat(int age) : mAge(age) {}
+
+    void speak() const{
+      cout << "meow~" << mAge << endl;
+    }
+
+    int getMAge() const {
+      return mAge;
+    }
+};
+
 int main() {
-  //STL 벡터를 사용하지 않는 배열선언
-  int num[5];
-  for(int i = 0; i<5; i++){
-    num[i] = i;
-    cout << num[i] << " ";
+  vector<Cat> cats;
+  cats.emplace_back(Cat{1});
+  cats.emplace_back(Cat{2});
+  cats.emplace_back(Cat{3});
+  cats.emplace_back(Cat{4});
+  cats.emplace_back(Cat{5});
+
+  // 고양이 전체 출력
+  for (const auto &cat: cats) {
+    cat.speak();
   }
-  cout<<endl;
-  //STL 벡터를 사용하지 않는 합공간 배열선언
-  //C언어 스타일 - malloc, free
-//  int* numPtr = (int*)malloc(sizeof (int)*5);
-//  free(numPtr)
-  //C++스타일 - new, delete
-  int *numPtr = new int[5];
-  for(int i = 0; i<5; i++){
-    numPtr[i] = i;
-    cout<<numPtr[i]<<" ";
-  }
-  cout<<endl;
-  delete []numPtr;
+  cout << endl;
 
-  //STL 벡터를 사용할 경우(힙공간)
-  vector<int> nums(5);
-  for(int i = 0; i<5; i++){
-    nums[i] = i;
-    cout<<nums[i]<<" ";
-  }
-  cout<<endl;
-
-  //벡터 초기화 2
-  vector<int> num2{1,2,3,4,5};
-
-
-  //벡터 내장 함수들
-  cout<<"----요소 삽입 전----"<<endl;
-  cout<<"벡터 요소의 개수: "<<nums.size()<<endl;
-  nums.emplace_back(5); //벡터의 마지막공간에 삽입
-  cout<<"----요소 삽입 후----"<<endl;
-  for(size_t i = 0; i<nums.size(); i++){
-    cout<<nums[i]<<" ";
+//벡터 순회방법 1을 활용하여 나이가 3살인 고양이를 찾고 출력(speak로)
+  for (size_t i = 0; i < cats.size(); ++i) {
+    if (cats[i].getMAge() == 3)
+      cats[i].speak();
   }
 
-  cout<<endl;
-  nums.pop_back(); // 벡터의 마지막 요소 제거
-  cout<<"---요소 제거 후---"<<endl;
-  for(size_t i = 0; i<nums.size(); i++){
-    cout<<nums[i]<<" ";
+//벡터 순회방법 2를 활용하여 나이가 4살인 고양이를 찾고 출력(pointer이기에 화살표 연산자)
+  for (auto itr = cats.begin(); itr < cats.end(); itr++) {
+    if (itr->getMAge() == 4)
+      itr->speak();
   }
 
-  //벡터 순회방법1 - 인덱스로 접근
-  for(size_t idx=0; idx<nums.size(); idx++){
-    cout<<nums[idx]<<" ";
+//벡터 순회방법 3을 활용하여 나이가 5살인 고양이를 찾고 출력
+  for (auto cat: cats) {
+    if (cat.getMAge() == 5)
+      cat.speak();
   }
-  cout<<endl;
-
-  //벡터 이터레이터
-  vector<int>::iterator itr; //벡터를 순회할 때 사용하는 포인터
-  // nums.begin(); : 첫번째 요소의 주솟값
-  // nums.end():  마지막 요소의 주솟값=1
-  itr = nums.begin();
-  cout<<"첫번째 요소의 값은? : "<<*itr<<endl;
-  itr = nums.end();
-  cout<<"마지막 요소의 값은? : "<<*(--itr)<<endl;
-
-  //벡터 순회방법2 - 이터레이터 활용(많이 활용)
-//  vector<int>::iterator itr2;
-  for(auto itr2= nums.begin();itr2<nums.end();itr2++){
-    cout<<*itr2<<" ";
-  }
-  cout<<endl;
-
-  //벡터 순회 방법 3 - range for(가장 깔끔)
-  for (auto num : nums){
-    cout<<num<<" ";
-  }
-  cout<<endl;
 
   return 0;
 }
