@@ -3,52 +3,31 @@
 
 using namespace std;
 
-class Cat {
-private:
-    int mAge;
-public:
-    explicit Cat(int age) : mAge(age) {}
+vector<int> count(int n) {
+  vector<int> cs(n + 1, 0); // 각 숫자의 약수 개수를 저장할 벡터 초기화
 
-    void speak() const{
-      cout << "meow~" << mAge << endl;
+  for (int i = 1; i <= n; ++i) {
+    for (int j = i; j <= n; j += i) {
+      cs[j]++; // j의 약수의 개수 증가
     }
+  }
 
-    int getMAge() const {
-      return mAge;
-    }
-};
+  return cs;
+}
 
 int main() {
-  vector<Cat> cats;
-  cats.emplace_back(Cat{1});
-  cats.emplace_back(Cat{2});
-  cats.emplace_back(Cat{3});
-  cats.emplace_back(Cat{4});
-  cats.emplace_back(Cat{5});
+  ios_base::sync_with_stdio(false);
+  cin.tie(nullptr);
+  int N;
+  cin >> N;
 
-  // 고양이 전체 출력
-  for (const auto &cat: cats) {
-    cat.speak();
+  vector<int> counts = count(N);
+
+  for (int i = 1; i <= N; ++i) {
+    cout << counts[i] << " ";
   }
   cout << endl;
 
-//벡터 순회방법 1을 활용하여 나이가 3살인 고양이를 찾고 출력(speak로)
-  for (size_t i = 0; i < cats.size(); ++i) {
-    if (cats[i].getMAge() == 3)
-      cats[i].speak();
-  }
-
-//벡터 순회방법 2를 활용하여 나이가 4살인 고양이를 찾고 출력(pointer이기에 화살표 연산자)
-  for (auto itr = cats.begin(); itr < cats.end(); itr++) {
-    if (itr->getMAge() == 4)
-      itr->speak();
-  }
-
-//벡터 순회방법 3을 활용하여 나이가 5살인 고양이를 찾고 출력
-  for (auto cat: cats) {
-    if (cat.getMAge() == 5)
-      cat.speak();
-  }
-
   return 0;
 }
+//두 번째 반복문을 j += i로 바꾸면 i의 배수만 계산하므로 불필요한 반복이 줄어들어 시간 복잡도가 개선됨
