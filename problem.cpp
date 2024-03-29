@@ -1,32 +1,26 @@
 #include <iostream>
-
 using namespace std;
 
-int countDigits(int num) {
-  int count = 0;
-  int base = 1;
-  int result = 0;
-
-  while (num / base > 0) {
-    int digit = (num / base) % 10; // 현재 자리의 숫자
-    result += digit * count; // 현재 자리의 숫자가 등장하는 횟수를 더함
-    if (digit > 1) {
-      result += base;
-    } else if (digit == 1) {
-      result += num % base + 1; // 현재 자리의 숫자가 1인 경우, 나머지 자릿수를 더함
-    }
-    base *= 10;
-    count++;
+int main() {
+  vector<int> N(10);
+  long long int a;
+  int max_num = 0;
+  int max_size = 0;
+  cin >> a;
+  while(a){
+    N[a%10] +=1;
+    a/=10;
   }
 
-  return result;
-}
-
-int main() {
-  int N;
-  cin >> N;
-
-  cout << countDigits(N) << endl;
-
-  return 0;
+  for(int i=0;i<=10;i++){
+    if(max_size<N[i]){
+      max_size = N[i];
+      max_num = i;
+    } else if(max_size == N[i]){
+      if(max_num<i){
+        max_num = i;
+      }
+    }
+  }
+  cout << max_num << endl;
 }
