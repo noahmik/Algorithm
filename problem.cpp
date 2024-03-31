@@ -1,27 +1,16 @@
 #include <iostream>
-#include <vector>
 #include <cmath>
 
 using namespace std;
-//자연수 n이 소수인지 판별할 때 for문은 n의 ‘제곱근’까지만 반복한다.
 
-int reverse(int x) {
-  int reversed = 0;
-  while (x > 0) {
-    int digit = x % 10;
-    reversed = reversed * 10 + digit;
-    x /= 10;
-  }
-  return reversed;
-}
+bool isPrime(int n) {
+  if (n <= 1) return false; // 1 이하의 수는 소수가 아님
+  if (n <= 3) return true; // 2와 3은 소수
 
-bool isPrime(int x) {
-  if (x <= 1) return false;
-  if (x == 2) return true;
-  if (x % 2 == 0) return false;
+  if (n % 2 == 0 || n % 3 == 0) return false; // 2 또는 3으로 나누어떨어지면 소수가 아님
 
-  for (int i = 3; i <= sqrt(x); i += 2) {
-    if (x % i == 0) return false;
+  for (int i = 5; i <= sqrt(n); i += 6) {
+    if (n % i == 0 || n % (i + 2) == 0) return false;
   }
 
   return true;
@@ -31,18 +20,16 @@ int main() {
   int N;
   cin >> N;
 
-  vector<int> numbers(N);
-  for (int i = 0; i < N; ++i) {
-    cin >> numbers[i];
-  }
+  int count = 0; // 소수의 개수를 저장할 변수
 
-  for (int i = 0; i < N; ++i) {
-    int reversed = reverse(numbers[i]);
-    if (isPrime(reversed)) {
-      cout << reversed << " ";
+  // 2부터 N까지 모든 수에 대해 소수인지 판별
+  for (int i = 2; i <= N; ++i) {
+    if (isPrime(i)) {
+      count++;
     }
   }
-  cout << endl;
+
+  cout << count << endl;
 
   return 0;
 }
