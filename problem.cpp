@@ -1,35 +1,32 @@
 #include <iostream>
-#include <cmath>
+#include <string>
+#include <algorithm>
 
 using namespace std;
 
-bool isPrime(int n) {
-  if (n <= 1) return false; // 1 이하의 수는 소수가 아님
-  if (n <= 3) return true; // 2와 3은 소수
-
-  if (n % 2 == 0 || n % 3 == 0) return false; // 2 또는 3으로 나누어떨어지면 소수가 아님
-
-  for (int i = 5; i <= sqrt(n); i += 6) {
-    if (n % i == 0 || n % (i + 2) == 0) return false;
+bool areAnagrams(const string& word1, const string& word2) {
+  if (word1.length() != word2.length()) {
+    return false;
   }
 
-  return true;
+  // 두 단어를 정렬하여 순서를 맞춘 후 비교
+  string sorted_word1 = word1;
+  string sorted_word2 = word2;
+  sort(sorted_word1.begin(), sorted_word1.end());
+  sort(sorted_word2.begin(), sorted_word2.end());
+
+  return sorted_word1 == sorted_word2;
 }
 
 int main() {
-  int N;
-  cin >> N;
+  string str1, str2;
+  cin >> str1 >> str2;
 
-  int count = 0; // 소수의 개수를 저장할 변수
-
-  // 2부터 N까지 모든 수에 대해 소수인지 판별
-  for (int i = 2; i <= N; ++i) {
-    if (isPrime(i)) {
-      count++;
-    }
+  if (areAnagrams(str1, str2)) {
+    cout << "YES" << endl;
+  } else {
+    cout << "NO" << endl;
   }
-
-  cout << count << endl;
 
   return 0;
 }
