@@ -1,48 +1,37 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-// 주어진 num이 정답 answer와 일치하는지 확인하는 함수
-bool is_correct(int num, int answer) {
-  // 1부터 num까지의 합을 구함
-  int sum = num * (num + 1) / 2;
-
-  // 정답과 계산된 합이 일치하는지 확인 후 반환
-  if (sum == answer) {
-    return true;
-  }
-
-  // 정답이 아니라면 false 반환
-  return false;
-}
-
-// 문제를 해결하는 함수
-void solve(int N) {
-  // 종료 조건: N이 0이 되면 함수 종료
-  if (N == 0) {
-    return;
-  }
-
-  int card, answer;
-  cin >> card >> answer;
-
-  // 정답 여부 확인 후 출력
-  if (is_correct(card, answer)) {
-    cout << "YES" << endl;
-  } else {
-    cout << "NO" << endl;
-  }
-
-  // 다음 입력을 처리하기 위해 재귀 호출
-  solve(N - 1);
-}
-
 int main() {
-  int N;
-  cin >> N;
+  int N, M;
+  cin >> N >> M;
 
-  // 문제 해결 함수 호출
-  solve(N);
+  vector<int> data(N);
+  for (int i = 0; i < N; ++i) {
+    cin >> data[i];
+  }
+
+  int max_alarm = 0; // 최대 연속 경보음이 울린 시간
+  int current_alarm = 0; // 현재 연속 경보음이 울린 시간
+
+  for (int i = 0; i < N; ++i) {
+    if (data[i] > M) {
+      current_alarm++; // 경보음이 울리는 동안 시간을 증가시킴
+    } else {
+      max_alarm = max(max_alarm, current_alarm); // 최대 연속 경보음 갱신
+      current_alarm = 0; // 경보음이 울리지 않으면 연속 경보음 시간 초기화
+    }
+  }
+
+  // 마지막으로 측정된 값이 경보음일 경우를 고려하여 최대 연속 경보음 갱신
+  max_alarm = max(max_alarm, current_alarm);
+
+  if (max_alarm > 0) {
+    cout << max_alarm << endl;
+  } else {
+    cout << -1 << endl;
+  }
 
   return 0;
 }
