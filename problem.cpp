@@ -4,34 +4,26 @@
 using namespace std;
 
 int main() {
-  int N, M;
-  cin >> N >> M;
+  int N;
+  cin >> N;
 
-  vector<int> data(N);
+  vector<int> heights(N);
   for (int i = 0; i < N; ++i) {
-    cin >> data[i];
+    cin >> heights[i];
   }
 
-  int max_alarm = 0; // 최대 연속 경보음이 울린 시간
-  int current_alarm = 0; // 현재 연속 경보음이 울린 시간
+  int anger_inducers = 0; // 분노 유발자 수
+  int max_height = heights[N - 1]; // 가장 뒤에 있는 학생의 키
 
-  for (int i = 0; i < N; ++i) {
-    if (data[i] > M) {
-      current_alarm++; // 경보음이 울리는 동안 시간을 증가시킴
-    } else {
-      max_alarm = max(max_alarm, current_alarm); // 최대 연속 경보음 갱신
-      current_alarm = 0; // 경보음이 울리지 않으면 연속 경보음 시간 초기화
+  // 뒤에서부터 순회하며 분노 유발자인지 확인
+  for (int i = N - 2; i >= 0; --i) {
+    if (heights[i] > max_height) {
+      anger_inducers++; // 분노 유발자인 경우 수를 증가
+      max_height = heights[i]; // 가장 큰 키를 갱신
     }
   }
 
-  // 마지막으로 측정된 값이 경보음일 경우를 고려하여 최대 연속 경보음 갱신
-  max_alarm = max(max_alarm, current_alarm);
-
-  if (max_alarm > 0) {
-    cout << max_alarm << endl;
-  } else {
-    cout << -1 << endl;
-  }
+  cout << anger_inducers << endl;
 
   return 0;
 }
