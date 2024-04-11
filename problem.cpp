@@ -4,21 +4,22 @@
 using namespace std;
 
 int main() {
-  int A,B,MAX = -100,MAX_mid=0;
-  cin >> A >> B;
-  int *C = new int[A];
+  int A;
+  int LTS=0,LTS_N=0;
+  cin >> A;
+  int *B = new int[A];
   for(int i=0;i<A;i++){
-    cin >> C[i];
+    cin >> B[i];
   }
-
-  for(int j=0;j<A-B;j++){
-    for(int g=j;g<j+B;g++){
-      MAX_mid = MAX_mid + C[g];
+  for(int j=0;j<A;j++){
+    if(B[j]<=B[j+1]){
+      LTS_N = LTS_N + 1;
+      if(LTS<LTS_N){
+        LTS = LTS_N;
+      }
+    } else {
+      LTS_N = 0;
     }
-    if(MAX_mid>MAX){
-      MAX = MAX_mid;
-    }
-    MAX_mid = 0;
   }
-  cout << MAX;
+  cout << LTS+1;
 }
