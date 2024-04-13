@@ -4,32 +4,27 @@
 using namespace std;
 
 int main() {
-  int A,result=0;
-  bool N= false;
-  cin >> A;
-  int *B = new int[A];
+  int N;
+  cin >> N;
 
-  for(int i=0;i<A;i++){
-    cin >> B[i];
+  vector<int> scores(N);
+  vector<int> ranks(N, 1);
+
+  for (int i = 0; i < N; ++i) {
+    cin >> scores[i];
   }
 
-  for(int j=0;j<A;j++){
-    for(int g=0;g<A;g++){
-      if(!N){
-      if(B[j] - B[j+1] == B[g]){
-        result +=1;
-        N = true;
-      } else if (B[j+1] - B[j] == B[g]){
-        result +=1;
-        N = true;
+  for (int i = 0; i < N; ++i) {
+    for (int j = 0; j < N; ++j) {
+      if (scores[i] < scores[j]) {
+        ranks[i]++;
       }
-     }
     }
-    N= false;
   }
-  if(result == A){
-    cout << "YES";
-  } else {
-    cout << "NO";
+
+  for (int i = 0; i < N; ++i) {
+    cout << ranks[i] << " ";
   }
+
+  return 0;
 }
