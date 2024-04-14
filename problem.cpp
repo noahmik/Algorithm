@@ -7,16 +7,16 @@ int main() {
   int N;
   cin >> N;
 
-  vector<int> scores(N);
+  vector<int> abilities(N);
   vector<int> ranks(N, 1);
 
   for (int i = 0; i < N; ++i) {
-    cin >> scores[i];
+    cin >> abilities[i];
   }
 
   for (int i = 0; i < N; ++i) {
-    for (int j = 0; j < N; ++j) {
-      if (scores[i] < scores[j]) {
+    for (int j = 0; j < i; ++j) {
+      if (abilities[j] > abilities[i]) {
         ranks[i]++;
       }
     }
