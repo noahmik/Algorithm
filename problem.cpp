@@ -1,30 +1,46 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
 int main() {
-  int N;
-  cin >> N;
+  int n;
+  cin >> n;
 
-  vector<int> abilities(N);
-  vector<int> ranks(N, 1);
-
-  for (int i = 0; i < N; ++i) {
-    cin >> abilities[i];
+  vector<int> nums(n);
+  for(int i = 0; i < n; i++) {
+    cin >> nums[i];
   }
 
-  for (int i = 0; i < N; ++i) {
-    for (int j = 0; j < i; ++j) {
-      if (abilities[j] > abilities[i]) {
-        ranks[i]++;
+  sort(nums.begin(), nums.end()); // 배열 정렬
+
+  int count = 0;
+  for(int i = 0; i < n; i++) {
+    int target = nums[i]; // 첫 번째 포인터
+    int left = 0, right = n - 1; // 두 번째 포인터
+    while(left < right) {
+      if(left == i) {
+        left++;
+        continue;
+      }
+      if(right == i) {
+        right--;
+        continue;
+      }
+      int sum = nums[left] + nums[right];
+      if(sum == target) {
+        count++;
+        break;
+      } else if(sum < target) {
+        left++;
+      } else {
+        right--;
       }
     }
   }
 
-  for (int i = 0; i < N; ++i) {
-    cout << ranks[i] << " ";
-  }
+  cout << count << endl;
 
   return 0;
 }
