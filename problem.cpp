@@ -1,46 +1,25 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
 int main() {
-  int n;
-  cin >> n;
-
-  vector<int> nums(n);
-  for(int i = 0; i < n; i++) {
-    cin >> nums[i];
+  int a,b,result = 0;
+  cin >> a;
+  vector<int> c(a);
+  cin >> b;
+  for(int i=0;i<a;i++){
+    cin >> c[i];
   }
 
-  sort(nums.begin(), nums.end()); // 배열 정렬
-
-  int count = 0;
-  for(int i = 0; i < n; i++) {
-    int target = nums[i]; // 첫 번째 포인터
-    int left = 0, right = n - 1; // 두 번째 포인터
-    while(left < right) {
-      if(left == i) {
-        left++;
-        continue;
-      }
-      if(right == i) {
-        right--;
-        continue;
-      }
-      int sum = nums[left] + nums[right];
-      if(sum == target) {
-        count++;
+  for(int j=0;j<a;j++){
+    for(int k=0;k<a;k++){
+      if(c[j]+c[k] == b){
+        result++;
         break;
-      } else if(sum < target) {
-        left++;
-      } else {
-        right--;
       }
     }
   }
 
-  cout << count << endl;
-
-  return 0;
+  cout << result/2;
 }
