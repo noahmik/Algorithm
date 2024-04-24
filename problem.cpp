@@ -1,25 +1,25 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
 int main() {
-  int a,b,result = 0;
-  cin >> a;
-  vector<int> c(a);
-  cin >> b;
-  for(int i=0;i<a;i++){
-    cin >> c[i];
-  }
+  int N;
+  cin >> N;
 
-  for(int j=0;j<a;j++){
-    for(int k=0;k<a;k++){
-      if(c[j]+c[k] == b){
-        result++;
-        break;
-      }
+  int count = 0; // 가짓수
+  int sum = 0; // 연속된 자연수의 합
+  int start = 1; // 시작 자연수
+  for (int end = 1; end <= N; ++end) {
+    sum += end; // 연속된 자연수 추가
+    while (sum > N) { // 합이 N을 초과하면 시작 자연수를 증가시킴
+      sum -= start++;
+    }
+    if (sum == N) { // 합이 N이면 가짓수 증가
+      count++;
     }
   }
 
-  cout << result/2;
+  cout << count << endl;
+
+  return 0;
 }
