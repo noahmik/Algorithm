@@ -1,29 +1,43 @@
 #include <iostream>
+#include <stack>
 #include <vector>
 
-using namespace std;
-
 int main() {
-  ios::sync_with_stdio(false); // C++의 입출력 스트림과 C의 입출력 버퍼를 동기화하지 않음
-  cin.tie(NULL); // cin과 cout이 번갈아가며 사용될 때의 성능을 향상시킴
-  cout.tie(NULL); // cin과 cout이 번갈아가며 사용될 때의 성능을 향상시킴
-
-  int N, M, A, B;
-  cin >> N >> M;
-  vector<int> sum(N + 1, 0);
-
-  // 합 배열
-  for (int i = 1; i <= N; i++) {
-    int num;
-    cin >> num;
-    sum[i] = sum[i - 1] + num;
+  int n;
+  std::cin >> n;
+  std::vector<int> sequence(n);
+  for (int i = 0; i < n; ++i) {
+    std::cin >> sequence[i];
   }
 
-  for (int j = 1; j <= M; j++) {
-    cin >> A >> B;
-    int result = sum[B] - sum[A - 1];
-    cout << result << '\n';
-  } //endl 함수는 개행만 해주는 것이 아닌 내부 버퍼를 비워주는 역할도 함께 => 매우느림
+  std::stack<int> s;
+  std::vector<char> operations;
+  int current = 1;
+
+  for (int i = 0; i < n; ++i) {
+    int num = sequence[i];
+
+    // 현재 숫자보다 작거나 같은 숫자까지 스택에 push
+    while (current <= num) {
+      s.push(current);
+      operations.push_back('+');
+      ++current;
+    }
+
+    // 스택의 top이 현재 숫자와 같은지 확인
+    if (s.top() == num) {
+      s.pop();
+      operations.push_back('-');
+    } else {
+      std::cout << "NO\n";
+      return 0;
+    }
+  }
+
+  // 모든 연산을 출력
+  for (char op : operations) {
+    std::cout << op << "\n";
+  }
 
   return 0;
 }
