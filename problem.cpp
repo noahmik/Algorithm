@@ -1,43 +1,23 @@
 #include <iostream>
-#include <stack>
 #include <vector>
+#include <queue> queue<int> q;
+
+using namespace std;
 
 int main() {
-  int n;
-  std::cin >> n;
-  std::vector<int> sequence(n);
-  for (int i = 0; i < n; ++i) {
-    std::cin >> sequence[i];
+  int N;
+  queue<int> que; //queue 생성
+  cin >> N;
+
+  for(int i=1;i<=N;i++){
+    que.push(i); //queue에 값들 순서대로 push
   }
 
-  std::stack<int> s;
-  std::vector<char> operations;
-  int current = 1;
-
-  for (int i = 0; i < n; ++i) {
-    int num = sequence[i];
-
-    // 현재 숫자보다 작거나 같은 숫자까지 스택에 push
-    while (current <= num) {
-      s.push(current);
-      operations.push_back('+');
-      ++current;
-    }
-
-    // 스택의 top이 현재 숫자와 같은지 확인
-    if (s.top() == num) {
-      s.pop();
-      operations.push_back('-');
-    } else {
-      std::cout << "NO\n";
-      return 0;
-    }
+  while (que.size() > 1) { //queue에 요소가 하나만 남을때까지 pop 반복
+    que.pop();
+    que.push(que.front());
+    que.pop();
   }
 
-  // 모든 연산을 출력
-  for (char op : operations) {
-    std::cout << op << "\n";
-  }
-
-  return 0;
+  cout << que.front();
 }
