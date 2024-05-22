@@ -1,49 +1,53 @@
-class Outer {
-    class Inner {
-        int iv = 100;
-    }
-}
+import java.util.*;
 
-class Exercise7_25 {
-    public static void main(String[] args){
-        Outer outer = new Outer();
-        Outer.Inner inner = outer.new Inner(); // Inner 클래스의 인스턴스 생성
-        System.out.println(inner.iv);
-    }
-}
+class pjh{
+    public static void main(String[] args) {
+        ArrayList list1 = new ArrayList(10);
+        list1.add(new Integer(5));
+        list1.add(new Integer(4));
+        list1.add(new Integer(2));
+        list1.add(new Integer(0));
+        list1.add(new Integer(1));
+        list1.add(new Integer(3));
 
-class Outer2 {
-    static class Inner {
-         int iv = 200;
-    }
-}
+        //작성
+        ArrayList list2 = new ArrayList(list1.subList(1, 4));
+        print(list1, list2);
 
-class Exercise7_26 {
-    public static void main(String[] args){
-        Outer2.Inner inner = new Outer2.Inner(); // Inner 클래스의 인스턴스 생성
-        System.out.println(inner.iv); // iv 필드에 접근
-    }
-}
+        //작성
+        Collections.sort(list1);
+        //작성
+        Collections.sort(list2);
+        print(list1, list2);
 
-class Outer3 {
-    int value = 10;
+        System.out.println("list1.containsAll(list2):" + list1.containsAll(list2));
 
-    class Inner {
-        int value = 20;
+        list2.add("B");
+        list2.add("C");
+        //작성
+        list2.add(3, "A");
+        print(list1, list2);
 
-        void method1() {
-            int value = 30;
-            System.out.println(value);      // 로컬 변수 value 출력 (30)
-            System.out.println(this.value); // 내부 클래스의 인스턴스 변수 value 출력 (20)
-            System.out.println(Outer3.this.value); // 외부 클래스의 인스턴스 변수 value 출력 (10)
+        //작성
+        list2.set(3, "AA");
+        print(list1, list2);
+
+        // list1에서 list2와 겹치는 부분만 남기고 나머지는 삭제한다.
+        System.out.println("list1.retainAll(list2):" + list1.retainAll(list2));
+        print(list1, list2);
+
+//          list2에서 list1에 포함된 객체들을 삭제한다.
+        for(int i= list2.size()-1; i >= 0; i--) {
+            if(list1.contains(list2.get(i)))
+                list2.remove(i);
+            //작성;
         }
-    }
-}
+        print(list1, list2);
+    } // main의 끝
 
-class Exercise7_27 {
-    public static void main(String args[]) {
-        Outer3 outer = new Outer3(); // Outer3 클래스의 인스턴스 생성
-        Outer3.Inner inner = outer.new Inner(); // Inner 클래스의 인스턴스 생성
-        inner.method1(); // method1 호출
+    static void print(ArrayList list1, ArrayList list2) {
+        System.out.println("list1:"+list1);
+        System.out.println("list2:"+list2);
+        System.out.println();
     }
-}
+} // class
